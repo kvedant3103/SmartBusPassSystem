@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid" style="height:700px; width:1000px; border: 1px solid  black;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-white" href="/addbus">Add New Bus</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/editbus">Edit Bus details</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/userdetails">User Pass Details</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/logoutadmin">Logout</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+    <div class="container info-boxes pt100 pb100">
+        <p></p>
+        <h1>Bus List</h1>
+        <table class="content-table" cellpadding="13" cellspacing="1"
+               style="margin-left: auto; margin-right: auto; border: 1px solid black;  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                      ">
+            <thead>
+             <tr style="background-color: #009879; color: #ffffff;">
+                <th>Bus Number</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                 <th>Amount</th>
+                <th>Stop 1</th>
+                <th>Stop 2</th>
+                <th>Stop 3</th>
+                <th>Stop 4</th>
+                 <th>Actions</th>
+             </tr>
+            </thead>
+           <tbody>
+            {% for bus in EditBus %}
+            <tr style="border-bottom: 1px solid #dddddd;">
+                <td>{{ bus.busno }}</td>
+                <td>{{ bus.location }}</td>
+                <td>{{ bus.to }}</td>
+                <td>{{ bus.amount }}$</td>
+                <td>{{ bus.stop1 }}</td>
+                <td>{{ bus.stop2 }}</td>
+                <td>{{ bus.stop3 }}</td>
+                <td>{{ bus.stop4 }}</td>
+                <td><a href="{% url 'edit' bus.id %}" class="btn btn-success mb-2">update</a> <a href="{% url 'delete_bus' bus.id %}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+           </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container-fluid" style="height:750px; width:1000px; border: 1px solid  black;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-white" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/login">Login</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/register">Register</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+    <h1 class="text-center mt-3">Register</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <table cellpadding="15" cellspacing="5" style="margin-left: auto; margin-right: auto;">
+
+      <tr>
+        <td>User ID</td>
+        <td><input type="text" placeholder="Enter user id..." name="user_id" required/></td>
+      </tr>
+
+      <tr>
+        <td>User Name</td>
+        <td><input type="text" placeholder="Enter Full name..." name="uname" required/></td>
+      </tr>
+
+      <tr>
+        <td>Password</td>
+        <td><input type="password" placeholder="Enter Password..." minlength="8" name="pwd" required
+                onchange="form.repwd.pattern=this.value"/></td>
+      </tr>
+
+      <tr>
+        <td>Re-Password</td>
+        <td><input type="password" placeholder="Enter Re-Password..." name="repwd" pattern="" required/></td>
+      </tr>
+
+      <tr>
+        <td>DOB</td>
+        <td><input type="date" placeholder="Enter Date of Birth..." name="DOB"/></td>
+      </tr>
+
+      <tr>
+        <td>Age</td>
+        <td><input type="number" placeholder="Enter your Age..." name="age"/></td>
+      </tr>
+
+      <tr>
+        <td>Address</td>
+        <td><input type="text" placeholder="Enter Address..." name="address"/></td>
+      </tr>
+
+      <tr>
+        <td>Gender</td>
+        <td><input type="radio" value="M" name="gender"/>Male | <input type="radio" value="F" name="gender"/>Female</td>
+      </tr>
+
+      <tr>
+        <td>Mobile</td>
+        <td><input type="number" placeholder="Enter mobile number..." maxlength="10" name="mobile"/></td>
+      </tr>
+
+      <tr>
+        <td>Email</td>
+        <td><input type="email" placeholder="Enter Email..." name="uemail"/></td>
+        <td><input type="reset" value="Clear" onClick="this.form.reset()"/></td>
+        <td><input type="submit" value="Submit"/></td>
+      </tr>
+
+    </table>
+  </form>
+    {% if messages %}
+    {% for result in messages %}
+    <b style="color: green;">{{result}}</b>
+    {% endfor %}
+    {% endif %}
+
+
+</div>
+
+{% endblock content %}

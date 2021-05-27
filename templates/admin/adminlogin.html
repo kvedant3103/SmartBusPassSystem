@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- <div class="container-fluid" style="height:700px; width:1000px; border: 1px solid  black;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-white" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="#">Login</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Register</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Contact us</a>
+      </li>
+
+    </ul>
+  </div>
+</nav> -->
+
+<div class="container-fluid" style="height:700px; width:1000px; border: 1px solid  black;">
+    <h1 class="text-center mt-3">Admin Login</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+  <table cellpadding="15" cellspacing="5" style="margin-left: auto; margin-right: auto;">
+    <tr>
+        <td>Username</td>
+        <td><input type="text" placeholder="Enter username..." name="username" required/></td>
+    </tr>
+
+    <tr>
+        <td>Password</td>
+        <td><input type="password" placeholder="Enter Password..." name="password" required/></td>
+      </tr>
+
+    <tr>
+        <td></td>
+        <td><button type="submit">Login</button></td>
+      </tr>
+
+  </table>
+  </form>
+    {% if messages %}
+    {% for result in messages %}
+    <b style="color: green;">{{result}}</b>
+    {% endfor %}
+    {% endif %}
+
+</div>
+
+{% endblock content %}

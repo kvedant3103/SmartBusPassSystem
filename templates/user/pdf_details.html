@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1 class="text-center">Pass</h1>
+       <!-- <table class="content-table" cellpadding="13" cellspacing="1">
+           <tr>
+           <td>
+            <tr>
+             <td align="left"><h1>Name: {{obj.full_name}}</h1></td>
+            </tr>
+
+            <tr>
+             <td align="left"><h1>From: {{obj.From}}</h1></td>
+            </tr>
+
+            <tr>
+             <td align="left"><h1>To: {{obj.To}}</h1></td>
+            </tr>
+
+            <tr>
+             <td align="left"><h1>Issued On: {{obj.Date1}}</h1></td>
+            </tr>
+
+            <tr>
+             <td align="left"><h1>Valid Till: {{obj.Date2}}</h1></td>
+            </tr>
+            </td>
+
+            <td>
+             <tr>
+                <td align="center"><img src="{{obj.profile_pic.path}}" height="200px"></td>
+             </tr>
+            </td>
+            <td>
+            </td>
+
+          </tr>
+        </table> -->
+   <table>
+    <td>
+    <div  align="left" class="container">
+        <h1>Name: {{obj.full_name}}</h1>
+        <h1>From: {{obj.From}}</h1>
+        <h1>To: {{obj.To}}</h1>
+        <h1>Issued On: {{obj.Date1}}</h1>
+        <h1>Valid Till: {{obj.Date2}}</h1>
+    </div>
+    </td>
+
+    <td>
+    <div align="center" class="container">
+        <img src="{{obj.profile_pic.path}}" height="200px">
+    </div>
+    </td>
+
+    <td>
+    <div align="right" class="container">
+        <img src="{{obj.qr_codes.path}}" height="200px">
+    </div>
+    </td>
+   </table>
+
+{% endblock content %}

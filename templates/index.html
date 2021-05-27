@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container-fluid" style="height:700px; width:1000px; border: 1px solid  black;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-white" href="#">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/register">Register</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/adminlogin">Admin</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+    <div><h1 style="color:Tomato; line-height: 200px;" class="text-center">Smart-Bus Pass System</h1></div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSUiCZ30MxBQVvnEV6g05QzCP7w1svSnnGPnw&usqp=CAU" alt="Smart Bus Pass System Logo" height="350" width="950">
+
+</div>
+
+{% endblock content %}

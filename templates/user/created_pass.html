@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid" style="height:700px; width:1000px; border: 1px solid  black;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+ <!-- <a class="navbar-brand text-white" href="/createpass">Pass Create</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/busdetails">Bus Details</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/created_pass">Created Pass</a>
+      </li>
+
+
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/logoutuser">Logout</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+    <div class="container info-boxes pt100 pb100">
+        <p></p>
+        <h1>Pass Created</h1>
+        <table class="content-table" cellpadding="13" cellspacing="1"
+               style="margin-left: auto; margin-right: auto; border: 1px solid black;  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                      ">
+            <thead>
+             <tr style="background-color: #009879; color: #ffffff;">
+                 <th>User Id</th>
+                <th>Bus Number</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                 <th>Starting Date</th>
+                <th>Limited To</th>
+                <th>Amount</th>
+                 <th>Action</th>
+                 <th></th>
+             </tr>
+            </thead>
+           <tbody>
+            {% for bus in pass %}
+              {% if bus.user_id == request.session.user_id %}
+                <tr style="border-bottom: 1px solid #dddddd;">
+                    <td>{{ bus.user_id }}</td>
+                    <td>{{ bus.Busno }}</td>
+                    <td>{{ bus.From }}</td>
+                    <td>{{ bus.To }}</td>
+                    <td>{{ bus.Date1 }}</td>
+                    <td>{{ bus.Date2 }}</td>
+                    <td>{{ bus.amount }}</td>
+                    <td><a href="{% url 'pdfdetail' bus.id %}" class="btn btn-success mb-2">See pass(pdf)</a> </td>
+
+                    {% now "Y-m-d" as todays_date %}
+                    {% if bus.Date2 <= todays_date %}
+                      <td><a href="{% url 'renewpass' bus.id %}" class="btn btn-success mb-2">renew</a></td>
+                    {% endif %}
+                </tr>
+      <!-- <script>
+           n =  new Date();
+           y = n.getFullYear();
+           m = n.getMonth() + 1;
+           d = n.getDate();
+           A = m + "/" + d + "/" + y;
+           document.getElementById("date").innerHTML = A
+        </script>  -->
+
+
+           {% endif %}
+            {% endfor %}
+
+
+        </tbody>
+        </table>
+
+
+
+
+    </div>
+
+
+</div>
+
+{% endblock content %}

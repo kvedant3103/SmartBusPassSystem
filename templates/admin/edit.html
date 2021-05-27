@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+
+<div class="container-fluid" style="height:700px; width:1000px; border: 1px solid  black;">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-white" href="/addbus">Add New Bus</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/editbus">Edit Bus details</a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link text-white" href="/userdetails">Users Pass Details</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/logoutadmin">Logout</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+  <div>
+<h1 align=center>Edit BUS DETAILS</h1>
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  <table cellpadding="15" cellspacing="5" style="margin-left: auto; margin-right: auto;">
+    <tr>
+      <td>Bus number :</td>
+      <td>{{ form.busno }}</td>
+    </tr>
+
+    <tr>
+      <td>Route :</td>
+      <td>{{ form.location }} &nbsp To</td>
+      <td>{{ form.to }}</td>
+    </tr>
+
+    <tr>
+      <td>Amount :</td>
+      <td>{{form.amount}}</td>
+    </tr>
+
+    <tr>
+      <td>Stops :
+      <td>
+
+      <tr>
+      <td>{{form.stop1}}</td>
+      <td>{{form.stop2}}</td>
+      </tr>
+
+     <tr>
+      <td>{{form.stop3}}</td>
+      <td>{{form.stop4}}</td>
+     </tr>
+
+    <td><input type="submit" value="Submit" /></td>
+
+    </tr>
+
+   <!-- <tr>
+      <td>Bus number :</td>
+      <td style="border-radius: 5pxu;"><input type="text" placeholder="Enter Bus number" name="bus_num" required /></td>
+    </tr>
+    <tr>
+      <td>Route :</td>
+      <td><input type="text" placeholder="Source ..." name="loc1" required/> &nbsp To</td>
+      <td><input type="text" placeholder="Destination ..." name="loc2" required/></td>
+    </tr>
+
+    <tr>
+      <td>Amount :</td>
+      <td><input type="number" placeholder="Amount..." name="amount" required/></td>
+    </tr>
+
+    <tr>
+      <td>Stops :
+      <td>
+
+
+    <tr>
+      <td><input type="text" placeholder="Enter your Stops" name="stop1" required/></td>
+      <td><input type="text" placeholder="Enter your Stops" name="stop2" required/></td>
+
+    </tr>
+
+
+    <tr>
+      <td><input type="text" placeholder="Enter your Stops" name="stop3" required/></td>
+      <td><input type="text" placeholder="Enter your Stops" name="stop4" required/></td>
+    </tr>
+
+    <td><input type="submit" value="Submit" /></td>
+
+    </tr> -->
+
+  </table>
+</form>
+
+
+
+    </div>
+</div>
+
+{% endblock content %}

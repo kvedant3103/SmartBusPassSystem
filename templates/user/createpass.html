@@ -1,0 +1,190 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+  function getdate() {
+    var tt = document.getElementById('txtDate').value;
+    const newdate = new Date(tt);
+    newdate.setDate(newdate.getDate() + 28);
+    document.querySelector("#follow_Date").valueAsDate = newdate;
+  }
+</script>
+
+
+<div class="container-fluid" style="height:1100px; width:1000px; border: 1px solid  black;">
+     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+ <!-- <a class="navbar-brand text-white" href="/createpass">Pass Create</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/busdetails">Bus Details</a>
+      </li>
+
+      <!-- <li class="nav-item">
+        <a class="nav-link text-white" href="/renewpass">Pass Renewal</a>
+      </li> -->
+
+       <li class="nav-item">
+        <a class="nav-link text-white" href="/created_pass">Created Pass</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/logoutuser">Logout</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+
+
+<div>
+    <h1 align=center>Create Pass</h1>
+
+    <form action="" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+    <table cellpadding="15" cellspacing="5" style="margin-left: auto; margin-right: auto;">
+
+      <tr>
+        <td>User ID</td>
+        <td><input type="text" value="{{ request.session.user_id }}" name="user_id" readonly/></td>
+      </tr>
+
+   <!--  <tr>
+        <td>Pass ID</td>
+        <td>{{form.pass_id}}</td>
+      </tr> -->
+
+      <tr>
+        <td>BUS Number</td>
+        <td style="border-radius: 5pxu;"><input type="text" placeholder="Enter Bus number" name="bus_num" value="{{add_bus.busno}}" required readonly /></td>
+      </tr>
+
+      <tr>
+        <td>Full Name</td>
+        <td style="border-radius: 5pxu;"><input type="text" placeholder="Enter your name..." name="full_name"  required /></td>
+      </tr>
+
+     <tr>
+        <td>From</td>
+        <td><input type="text" placeholder="Source ..." name="loc1" value="{{add_bus.location}}" required readonly/> &nbsp To</td>
+        <td><input type="text" placeholder="Destination ..." name="loc2" value="{{add_bus.to}}" required readonly/></td>
+      </tr>
+
+
+      <tr>
+        <td>Duration</td>
+          <td><input type="date" placeholder="Starting date" name="initialdate" id="txtDate" value="{% now 'dd-mm-yyyy' %}" required/></td>
+          <td><input type="button" onclick="getdate()" value="AutoFill the Dates" /></td>
+          <td><input type="date" placeholder="Limited to" id="follow_Date" name="finaldate" readonly /></td>
+      </tr>
+
+      <tr>
+        <td>Amount</td>
+        <td><input type="number" placeholder="amount" name="amount" value="{{add_bus.amount}}"  readonly/></td>
+      </tr>
+
+      <tr>
+          <td>Image</td>
+          <td><input type="file" name="uploadpic"/></td>
+      </tr>
+
+        <tr align="center"><td><h1>Payment</h1></td></tr>
+            <tr>
+               <td><label>Accepted Cards</label></td>
+              <div class="icon-container">
+                 <td>
+                  <i class="fa fa-cc-visa" style="color:navy; font-size:48px;"></i>
+                  <i class="fa fa-cc-amex" style="color:blue; font-size:48px;"></i>
+                  <i class="fa fa-cc-mastercard" style="color:red; font-size:48px;"></i>
+                  <i class="fa fa-cc-discover" style="color:orange; font-size:48px;"></i>
+                 </td>
+              </div>
+            </tr>
+
+    <!--    <tr>
+         <td>Card Number</td>
+         <td><input id="ccn" name="cc_number" type="number" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"/></td>
+      </tr>
+
+	  <tr>
+        <td>CVV Number</td>
+        <td><input type="number" placeholder="Enter your CVV Number..." name="Cvv_num"/></td>
+      </tr> -->
+
+
+
+        <div class="payment">
+        <form>
+
+            <tr>
+                <div class="form-group" id="card-number-field">
+                 <td><label for="cardNumber">Card Number</label></td>
+                 <td><input type="number" placeholder="xxxx xxxx xxxx xxxx" id="cardNumber" maxlength="16" name="cc_number"></td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group CVV">
+                 <td><label for="cvv">CVV</label></td>
+                 <td><input type="number" placeholder="CVV" id="cvv" maxlength="3" name="cvv"></td>
+                </div>
+            </tr>
+            <tr>
+            <div class="form-group" id="expiration-date">
+                <td><label>Expiration Date</label></td>
+                <td>
+                    <select name="expiry">
+                    <option value="01">January</option>
+                    <option value="02">February </option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+
+                <select name="month">
+                    <option value="16"> 2016</option>
+                    <option value="17"> 2017</option>
+                    <option value="18"> 2018</option>
+                    <option value="19"> 2019</option>
+                    <option value="20"> 2020</option>
+                    <option value="21"> 2021</option>
+                </select>
+                </td>
+            </div>
+                </tr>
+        </form>
+    </div>
+
+
+
+
+      <tr>
+
+        <td><input type="button" value="Back" /></td>
+        <td><input type="submit" value="Submit"/></td>
+      </tr>
+
+    </table>
+    </form>
+</div>
+
+</div>
+
+
+{% endblock content %}

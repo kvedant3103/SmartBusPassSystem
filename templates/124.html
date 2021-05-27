@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+
+  function getdate() {
+    var tt = document.getElementById('txtDate').value;
+
+    var date = new Date(tt);
+    var newdate = new Date(date);
+
+    newdate.setDate(newdate.getDate() + 28);
+
+    var dd = newdate.getDate();
+    var mm = newdate.getMonth() + 1;
+    var y = newdate.getFullYear();
+
+    var someFormattedDate = dd + '-' + mm + '-' + y;
+    document.getElementById('follow_Date').value = someFormattedDate;
+  }
+</script>
+
+
+
+<div>
+  <h1 align=center>Create Pass</h1>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token%}
+    <table cellpadding="15" cellspacing="5" style="margin-left: auto; margin-right: auto;">
+
+
+
+      <tr>
+        <td>Pass ID</td>
+        <td><input type="text" placeholder="P001" name="pass_id" required /></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" placeholder="Enter tour name" name="name" required /></td>
+      </tr>
+
+      <tr>
+        <td>BUSS Number</td>
+        <td><input type="number" placeholder="Enter Buss Number.." name="bus_num" /></td>
+      </tr>
+      <tr>
+        <td>From</td>
+        <td><input type="text" placeholder="Source ..." name="loc1" /></td>
+        <td>To</td>
+        <td><input type="text" placeholder="Destination ..." name="loc2" /></td>
+      </tr>
+
+
+      <tr>
+        <td>Duration</td>
+          <td><input type="date" placeholder="Enter Date ..." name="date1" id="txtDate" /> </td>
+          <td><input type="button" onclick="getdate()" value="AutoFill the Dates" /></td>
+        <td><input type="text" placeholder="Enter Date ..." name="date2" id="follow_Date" readonly/> </td>
+      </tr>
+
+      <tr>
+        <td>Image</td>
+        <td><input type="file" name="image" /></td>
+      </tr>
+
+
+      <td><input type="button" value="Back" /></td>
+      <td><input type="submit" value="Submit" /></td>
+      </tr>
+
+    </table>
+  </form>
+</div>
+
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
+{% endblock content %}
